@@ -1,3 +1,5 @@
+var tbl = document.getElementById("tbl")
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     localStorage.setItem("nama",profile.getName());
@@ -16,11 +18,11 @@ function onLoad(){
 
 $("#user").ready(function () {
     var user = document.getElementById("user")
-    user.innerHTML = `Selamat Datang, ${localStorage.getItem("nama")}`
+    $("#foto").attr("src", localStorage.getItem("image"));
+    user.innerHTML = `Halo, ${localStorage.getItem("nama")} <br> ${localStorage.getItem("email")}`
 });
 
 $("#tbl").ready(function () {
-    var tbl = document.getElementById("tbl")
     getAll().then(response => {
         console.log(response)
         for(var i = 0; i <response.length; i++){
@@ -33,10 +35,7 @@ $("#tbl").ready(function () {
             const td6 = tr.insertCell();
             const td7 = tr.insertCell();
             console.log(response[i])
-                // const aksi = tr. document.getElementById("tbl-aksi")
-                // aksi.innerHTML = 
-                
-                // td.innerHTML = response[i][Object.keys(response[i])[j]];
+
             td1.innerHTML = response[i].idtas
             td2.innerHTML = response[i].merktas
             td3.innerHTML = response[i].nama
